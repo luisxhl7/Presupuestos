@@ -1,0 +1,97 @@
+
+.contenedor {
+    width: 860px;
+    margin: 60px auto;
+    &__ingreso {
+        float: left;
+        width: 370px;
+        margin-right: 70px;
+        .contenedor__elemento_eliminar, .contenedor__elemento_eliminar--btn{
+            color: #28B9B5;
+        }
+    }
+    &__egreso {
+        float: left;
+        width: 370px;
+        .contenedor__elemento_eliminar, .contenedor__elemento_eliminar--btn {
+            color: #FF5049;
+        }
+    }
+    h2 {
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+    &__derecha{
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__ingreso_titulo {
+        color: #28B9B5;
+    }
+    &__egreso_titulo {
+        color: #FF5049;
+    }
+    &__elemento {
+        height: 50px;
+        padding: 13px;
+        border-bottom: 1px solid #e7e7e7;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &:first-child {
+            border-top: 1px solid #e7e7e7;
+        }
+        &:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        &:hover{
+            .contenedor{
+                &__elemento_eliminar--btn { display: block; }
+                &__elemento_valor { transform: translateX(-20px); }
+                &__elemento_porcentaje { transform: translateX(-20px); }
+            }
+        } 
+
+    }
+    &__elemento_descripcion {
+        float: left;
+    }
+    &__elemento_valor {
+        float: left;
+        transition: transform 0.3s;
+    }
+    &__elemento_porcentaje {
+        float: left;
+        margin-left: 20px;
+        transition: transform 0.3s;
+        font-size: 11px;
+        background-color: #FFDAD9;
+        padding: 3px;
+        border-radius: 3px;
+        width: 45px;
+        text-align: center;
+    }
+    &__elemento_eliminar {
+        float: left;
+        display: flex;
+        align-items: center;
+    }
+    &__elemento_eliminar--btn {
+        font-size: 22px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        display: none;
+        &:focus {
+            outline: none;
+        }
+        &:active {transform: translateY(2px);
+        }
+    }
+}
