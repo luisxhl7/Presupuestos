@@ -1,21 +1,5 @@
 
 export class Patrimonio{
-
-    eliminarIngreso = (id) => {
-        try {
-            const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
-
-            let indiceEliminar = movementData.findIndex(movementData => movementData.id === id)
-            movementData.splice(indiceEliminar, 1)
-            localStorage.setItem('movementData', movementData)
-            return movementData
-            
-        } catch (error) {
-            console.log(error);
-        }
-        // cargarCabecero()
-        // cargarIngresos()
-    }
     
     eliminarEgreso = (id) => {
         try {
@@ -72,7 +56,7 @@ export class Patrimonio{
     agregarDato = async(descripcion, valor, tipo) => {
         try {
             const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
-            const id = movementData.length || 1
+            const id = movementData.length + 1
             console.log(movementData);
             movementData.push({ id, descripcion, valor: Number(valor), tipo});
     
