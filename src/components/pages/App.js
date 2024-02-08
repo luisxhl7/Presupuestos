@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Header data={data}/>
       <Form setDataMovent={setDataMovent}/>
-      <Stats data={data}/>
+      <Stats data={data} setDataMovent={setDataMovent}/>
     </div>
   );
 }

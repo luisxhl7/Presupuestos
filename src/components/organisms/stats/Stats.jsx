@@ -6,7 +6,7 @@ import { Patrimonio } from '../../../js/patrimonio '
 import { ingresos } from '../../../js/ingresos'
 import './Stats.scss'
 
-export const Stats = ({data}) => {
+export const Stats = ({data, setDataMovent}) => {
   const patrimonio = new Patrimonio()
   const [ingresosFinales, setIngresosFinales] = useState(ingresos)
   const [dataIngresos, setDataIngresos] = useState()
@@ -35,8 +35,9 @@ export const Stats = ({data}) => {
   };
 
   const eliminarEgreso = (id) =>{
-    console.log('asd');
-    patrimonio.eliminarEgreso(id)
+    const resp = patrimonio.eliminarEgreso(id)
+    setDataMovent(resp)
+    console.log(resp);
   }
 
 
@@ -52,7 +53,7 @@ export const Stats = ({data}) => {
                 <div className="contenedor__elemento_eliminar">
                 <div className="contenedor__elemento_valor">{`+ ${formatoMoneda(item?.valor)}`}</div>
                   <button className='contenedor__elemento_eliminar--btn'>
-                    <ion-icon name="close-circle-outline" onClick={() => eliminarIngreso(item?.id)}></ion-icon>
+                    <ion-icon name="close-circle-outline" onClick={() => eliminarEgreso(item?.id)}></ion-icon>
                   </button>
                 </div>
               </div>
@@ -69,7 +70,7 @@ export const Stats = ({data}) => {
               <div className="contenedor__derecha">
                 <div className="contenedor__elemento_eliminar">
                   <div className="contenedor__elemento_valor">-{formatoMoneda(item?.valor)}</div>
-                  <div className="contenedor__elemento_porcentaje">{formatoPorcentaje(item?.valor/totalEgresos())}</div>
+                  <div className="contenedor__elemento_porcentaje">{formatoPorcentaje(item?.valor/patrimonio.totalIngresos())}</div>
                   <button className='contenedor__elemento_eliminar--btn'>
                     <ion-icon name="close-circle-outline" onClick={() => eliminarEgreso(item?.id)}></ion-icon>
                   </button>

@@ -1,14 +1,14 @@
-import { egresos } from "./egresos"
-import { ingresos } from "./ingresos"
 
 export class Patrimonio{
 
-
     eliminarIngreso = (id) => {
         try {
-            let indiceEliminar = ingresos.findIndex(ingreso => ingreso._id === id)
-            ingresos.splice(indiceEliminar, 1)
-            return ingresos
+            const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
+
+            let indiceEliminar = movementData.findIndex(movementData => movementData.id === id)
+            movementData.splice(indiceEliminar, 1)
+            localStorage.setItem('movementData', movementData)
+            return movementData
             
         } catch (error) {
             console.log(error);
@@ -18,10 +18,17 @@ export class Patrimonio{
     }
     
     eliminarEgreso = (id) => {
-        let indiceEliminar = egresos.findIndex(egreso => egreso._id === id)
-        egresos.splice(indiceEliminar, 1)
-        // cargarCabecero()
-        // cargarEgresos()
+        try {
+            const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
+
+            let indiceEliminar = movementData.findIndex(movementData => movementData.id === id)
+            movementData.splice(indiceEliminar, 1)
+            localStorage.setItem('movementData', JSON.stringify(movementData))
+            return movementData
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -62,25 +69,12 @@ export class Patrimonio{
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     agregarDato = async(descripcion, valor, tipo) => {
         try {
             const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
-    
-            movementData.push({ descripcion, valor: Number(valor), tipo});
+            const id = movementData.length || 1
+            console.log(movementData);
+            movementData.push({ id, descripcion, valor: Number(valor), tipo});
     
             localStorage.setItem('movementData', JSON.stringify(movementData));
     
@@ -124,7 +118,6 @@ export class Patrimonio{
             console.log(error);
         }
     }
-    
     totalEgresos = () => {
         try {
             const movementData = JSON.parse(localStorage.getItem('movementData')) || 0;

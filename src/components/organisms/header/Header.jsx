@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.scss'
 import { Patrimonio } from '../../../js/patrimonio '
-import { formatoMoneda } from '../../../js/formatos'
+import { formatoMoneda, formatoPorcentaje } from '../../../js/formatos'
 
 export const Header = ({data}) => {
   const patrimonio = new Patrimonio()
@@ -51,7 +51,11 @@ export const Header = ({data}) => {
                 - {formatoMoneda(totalEgresos)}
               </div>
               <div className="header__presupuesto_egreso--porcentaje" id='porcentaje'>
-                45%
+                {patrimonio.totalEgresos() ? 
+                  formatoPorcentaje(patrimonio.totalEgresos()/patrimonio.totalIngresos())
+                :
+                  '0%'
+                }
               </div>
             </div>
           </div>
