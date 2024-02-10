@@ -29,9 +29,9 @@
         font-size: 18px;
         font-weight: 400;
         margin: 35px 0px 10px;
+        text-align: center;
         
         @include FromMin(375px) {
-            text-align: center;
         }
     }
     &__derecha{
