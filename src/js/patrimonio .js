@@ -57,7 +57,6 @@ export class Patrimonio{
         try {
             const movementData = JSON.parse(localStorage.getItem('movementData')) || [];
             const id = movementData.length + 1
-            console.log(movementData);
             movementData.push({ id, descripcion, valor: Number(valor), tipo});
     
             localStorage.setItem('movementData', JSON.stringify(movementData));

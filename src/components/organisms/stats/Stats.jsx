@@ -20,7 +20,6 @@ export const Stats = ({data, setDataMovent}) => {
   const eliminarEgreso = (id) =>{
     const resp = patrimonio.eliminarEgreso(id)
     setDataMovent(resp)
-    console.log(resp);
   }
 
   return (
@@ -30,14 +29,14 @@ export const Stats = ({data, setDataMovent}) => {
         <div id='lista-ingresos'>
           {dataIngresos?.map( (item) => (
             <div className="contenedor__elemento" key={item?.id}>
-              <div className="contenedor__elemento_descripcion">
+              <span className="contenedor__elemento_descripcion" title={item?.descripcion}>
                 {item?.descripcion}
-              </div>
+              </span>
               <div className="contenedor__derecha">
                 <div className="contenedor__elemento_eliminar">
-                  <div className="contenedor__elemento_valor">
-                    {`+ ${formatoMoneda(item?.valor)}`}
-                  </div>
+                  <span className="contenedor__elemento_valor" title={`+ ${formatoMoneda(item?.valor)}`}>
+                    {`+${formatoMoneda(item?.valor)}`}
+                  </span>
                   <button className='contenedor__elemento_eliminar--btn'>
                     <ion-icon name="close-circle-outline" onClick={() => eliminarEgreso(item?.id)}></ion-icon>
                   </button>
@@ -52,11 +51,22 @@ export const Stats = ({data, setDataMovent}) => {
         <div id='lista-egresos'>
           {dataEgresos?.map( (item, idx) => (
             <div className="contenedor__elemento" key={idx}>
-              <div className="contenedor__elemento_descripcion">{item?.descripcion}</div>
+              <div className="contenedor__elemento_descripcion" title={item?.descripcion}>
+                {item?.descripcion}
+              </div>
               <div className="contenedor__derecha">
                 <div className="contenedor__elemento_eliminar">
-                  <div className="contenedor__elemento_valor">-{formatoMoneda(item?.valor)}</div>
-                  <div className="contenedor__elemento_porcentaje">{formatoPorcentaje(item?.valor/patrimonio.totalIngresos())}</div>
+                  <span className="contenedor__elemento_valor" title={`-${formatoMoneda(item?.valor)}`}>
+                    -{formatoMoneda(item?.valor)}
+                  </span>
+                  <span className="contenedor__elemento_porcentaje" title={formatoPorcentaje(item?.valor/patrimonio.totalIngresos())}>
+                    {/* {formatoPorcentaje(item?.valor/patrimonio.totalIngresos())} */}
+                    {!item?.valor ?
+                      '0%'
+                      :
+                      formatoPorcentaje(item?.valor/patrimonio.totalIngresos())
+                    }
+                  </span>
                   <button className='contenedor__elemento_eliminar--btn'>
                     <ion-icon name="close-circle-outline" onClick={() => eliminarEgreso(item?.id)}></ion-icon>
                   </button>

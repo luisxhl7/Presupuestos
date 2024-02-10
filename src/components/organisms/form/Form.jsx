@@ -1,12 +1,14 @@
 import React from 'react'
 import { useForm } from '../../../hooks/useForm';
 import { Patrimonio } from '../../../js/patrimonio ';
+import { SimpleInput } from '../../atoms/simpleInput/SimpleInput';
+import { regEx } from '../../../constans/regEx.js';
 import './Form.scss'
 
 export const Form = ({setDataMovent}) => {
   
   const patrimonio = new Patrimonio()
-  const { descripcion, valor, tipo, onInputChange, setValues } = useForm({
+  const { descripcion, valor, tipo, onInputChange, setValues, onResetForm } = useForm({
     descripcion: '',
     valor: '',
     tipo: 'ingreso',
@@ -14,12 +16,18 @@ export const Form = ({setDataMovent}) => {
 
   const handleOnSubmit = async(event) => {
     event.preventDefault()
-    const result = await patrimonio.agregarDato(descripcion, valor, tipo, setDataMovent)
-    setDataMovent(result)
+    if (regEx.regexDescription.test(descripcion) && regEx.regexNumero.test(valor)){
+      const result = await patrimonio.agregarDato(descripcion, valor, tipo, setDataMovent)
+      setDataMovent(result)
+      onResetForm()
+    }else{
+      alert('datos insuficientes')
+    }
   }
+  
 
   return (
-    <form id="forma" onSubmit={handleOnSubmit}>
+    <form id="forma" onSubmit={handleOnSubmit} autoComplete='off'>
       <div className="agregar">
         <div className="agregarContenedor">
         
@@ -27,25 +35,27 @@ export const Form = ({setDataMovent}) => {
             <option value="ingreso">Ingreso</option>
             <option value="egreso">Egresos</option>
           </select>
-
-          <input 
-            type="text" 
-            className="agregar_descripcion" 
+          
+          <SimpleInput
+            type="text"
+            autoFocus={true}
             id="descripcion"
-            name="descripcion" 
             value={descripcion} 
-            onChange={onInputChange} 
+            onChange={onInputChange}
+            regEx={regEx.regexDescription}
             placeholder="Agregar Descripcion"
           />
 
-          <input 
-            type="number" 
+          <SimpleInput
+            type="number"
+            autoFocus={false}
             className="agregar_valor" 
             id="valor" 
-            name="valor" 
             value={valor} 
-            onChange={onInputChange} 
-            placeholder="Valor" step="any"
+            onChange={onInputChange}
+            regEx={regEx.regexNumero}
+            placeholder="Valor" 
+            step="any"
           />
           
           <button className="agregar_btn">

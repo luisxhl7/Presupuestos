@@ -1,12 +1,17 @@
+@import '../../../style/mixins.scss';
+@import '../../../style/variables.scss';
 
 .contenedor {
     width: 100%;
-    margin: 60px auto;
+    margin: 20px auto  60px;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     &__ingreso {
         float: left;
         width: 370px;
         max-width: 100%;
-        margin-right: 70px;
         .contenedor__elemento_eliminar, .contenedor__elemento_eliminar--btn{
             color: #28B9B5;
         }
@@ -23,7 +28,11 @@
         text-transform: uppercase;
         font-size: 18px;
         font-weight: 400;
-        margin-bottom: 15px;
+        margin: 35px 0px 10px;
+        
+        @include FromMin(375px) {
+            text-align: center;
+        }
     }
     &__derecha{
         display: flex;
@@ -49,17 +58,18 @@
             background-color: #f7f7f7;
         }
 
-        &:hover{
-            .contenedor{
-                &__elemento_eliminar--btn { display: block; }
-                &__elemento_valor { transform: translateX(-20px); }
-                &__elemento_porcentaje { transform: translateX(-20px); }
-            }
-        } 
-
     }
     &__elemento_descripcion {
         float: left;
+        width: 100%;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        @include FromMin($small) {
+            width: 100%;
+            max-width: 400px;
+        }
     }
     &__elemento_valor {
         float: left;
@@ -67,14 +77,14 @@
     }
     &__elemento_porcentaje {
         float: left;
-        margin-left: 20px;
+        margin-left: 5px;
         transition: transform 0.3s;
         font-size: 11px;
         background-color: #FFDAD9;
         padding: 3px;
         border-radius: 3px;
-        width: 45px;
         text-align: center;
+        width: 45px;
     }
     &__elemento_eliminar {
         float: left;
@@ -89,7 +99,7 @@
         display: inline-block;
         vertical-align: middle;
         line-height: 1;
-        display: none;
+        display: flex;
         &:focus {
             outline: none;
         }

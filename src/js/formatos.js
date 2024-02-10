@@ -5,5 +5,5 @@ export const formatoMoneda = (valor) => {
 }
 
 export const formatoPorcentaje = (valor) => {
-    return valor.toLocaleString('en-US',{style:'percent', minimumFractionDigits:2});
+    return valor.toLocaleString('en-US',{style:'percent', minimumFractionDigits:0});
 }

@@ -50,7 +50,7 @@ export const Header = ({data}) => {
               <div className="header__presupuesto_egreso--valor" id='egresos'>
                 - {formatoMoneda(totalEgresos)}
               </div>
-              <div className="header__presupuesto_egreso--porcentaje" id='porcentaje'>
+              <div className="header__presupuesto_egreso--porcentaje" id='porcentaje' title={formatoPorcentaje(patrimonio.totalEgresos()/patrimonio.totalIngresos())}>
                 {patrimonio.totalEgresos() ? 
                   formatoPorcentaje(patrimonio.totalEgresos()/patrimonio.totalIngresos())
                 :
