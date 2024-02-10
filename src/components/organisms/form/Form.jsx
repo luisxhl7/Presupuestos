@@ -30,10 +30,10 @@ export const Form = ({setDataMovent}) => {
     <form id="forma" onSubmit={handleOnSubmit} autoComplete='off'>
       <div className="agregar">
         <div className="agregarContenedor">
-        
+        <label htmlFor="tipo">Movimiento: </label>
           <select className="agregar_tipo" id="tipo" name="tipo" value={tipo} onChange={(e) => setValues({ ...{ descripcion, valor, tipo: e.target.value } })}>
             <option value="ingreso">Ingreso</option>
-            <option value="egreso">Egresos</option>
+            <option value="egreso">Egreso</option>
           </select>
           
           <SimpleInput
