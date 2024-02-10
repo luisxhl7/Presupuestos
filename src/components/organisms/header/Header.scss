@@ -1,22 +1,21 @@
+@import '../../../style/mixins.scss';
+@import '../../../style/variables.scss';
+
 .header {
     height: 40vh;
     background-size: cover;
-    background-position: center;
-    position: relative;
     width: 100%;
-    padding-top: 150px;
-    padding-bottom: 100px;
     color: #fff;
     background: url(../../../assets/fondo.png), #7b4397;
     background: url(../../../assets/fondo.png), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430));
     background: url(../../../assets/fondo.png), linear-gradient(to left, #7b4397, #dc2430);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &__presupuesto {
-        position: absolute;
         width: 350px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         color: #fff;
+
     }
     &__presupuesto_titulo{
         font-size: 20px;
@@ -45,22 +44,32 @@
     }
     &__presupuesto_ingreso{
         width: 100%;
+        max-width: 300px;
         padding: 12px;
         text-transform: uppercase;
         margin-bottom: 10px;
         background-color: #28B9B5;
         display: flex;
         justify-content: space-between;
+        @include FromMin(375px) {
+            width: 100%;
+            max-width: 100%;
+        }
     }
     
     &__presupuesto_egreso {
+        width: 100%;
+        max-width: 300px;
         padding: 12px;
         text-transform: uppercase;
         margin-bottom: 10px;
         background-color: #FF5049;
-        width: 100%;
         display: flex;
         justify-content: space-between;
+        @include FromMin(375px) {
+            width: 100%;
+            max-width: 100%;
+        }
     }
     
     &__presupuesto_ingreso--texto{

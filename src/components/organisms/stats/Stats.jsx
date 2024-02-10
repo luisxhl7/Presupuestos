@@ -14,6 +14,7 @@ export const Stats = ({data, setDataMovent}) => {
     const result2 = patrimonio.getEgresos()
     setDataIngresos(result)
     setDataEgresos(result2)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
   const eliminarEgreso = (id) =>{
@@ -27,8 +28,8 @@ export const Stats = ({data, setDataMovent}) => {
       <div className="contenedor__ingreso">
         <h2 className='contenedor__ingreso_titulo'>Ingresos</h2>
         <div id='lista-ingresos'>
-          {dataIngresos?.map( (item, idx) => (
-            <div className="contenedor__elemento" key={idx}>
+          {dataIngresos?.map( (item) => (
+            <div className="contenedor__elemento" key={item?.id}>
               <div className="contenedor__elemento_descripcion">
                 {item?.descripcion}
               </div>

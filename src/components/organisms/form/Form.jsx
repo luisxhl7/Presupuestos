@@ -24,8 +24,8 @@ export const Form = ({setDataMovent}) => {
         <div className="agregarContenedor">
         
           <select className="agregar_tipo" id="tipo" name="tipo" value={tipo} onChange={(e) => setValues({ ...{ descripcion, valor, tipo: e.target.value } })}>
-            <option value="ingreso">+</option>
-            <option value="egreso">-</option>
+            <option value="ingreso">Ingreso</option>
+            <option value="egreso">Egresos</option>
           </select>
 
           <input 
