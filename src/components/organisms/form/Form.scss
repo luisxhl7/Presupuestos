@@ -29,6 +29,7 @@
     transition: border 0.3s;
     width: 100%;
     max-width: 400px;
+    border-radius: 5px;
     @include FromMin(560px) {
         max-width: 150px;
     }
